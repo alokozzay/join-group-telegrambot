@@ -135,9 +135,9 @@ bot.on('message', async msg => {
         case 'Обновить список Групп': 
             bot.sendMessage(ChatId, messageText.group);
             bot.on('document', msg => { 
-                console.log(msg)
+                // console.log(msg)
 
-                bot.downloadFile(msg.document.file_id, `/src/`).then(fileName => {
+                bot.downloadFile(msg.document.file_id, __dirname).then(fileName => {
                     console.log(fileName)
                     fs.readFile(fileName, "utf8",  function(error,data){
                         if (error) {
