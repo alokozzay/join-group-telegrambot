@@ -137,29 +137,27 @@ bot.on('message', async msg => {
             bot.on('document', msg => { 
                 // console.log(msg)
 
-                const pathFolder = `${__dirname}/app/src/`;
-                bot.downloadFile(msg.document.file_id, pathFolder).then(fileName => {
-                    console.log(fileName);
-                    fs.readFile(`${pathFolder}${fileName}`, "utf8", function (error, data) {
+                bot.downloadFile(msg.document.file_id, __dirname).then(fileName => {
+                    console.log(fileName)
+                    fs.readFile(fileName, "utf8",  function(error,data){
                         if (error) {
                             console.log(error)
-                            bot.sendMessage(ChatId, messageText.groupbad);
+                            bot.sendMessage(ChatId, messageText.groupbad);  
                             return false
                         } else {
                             group = data.split("\r\n");
                         }
-
+                        
                     });
 
                     fs.unlink(fileName, err => {
-                        if (err) { // не удалось удалить файл
-
+                        if(err) { // не удалось удалить файл
                             console.log(err);
                         } else {
                             console.log('Файл успешно удалён');
-                            bot.sendMessage(ChatId, messageText.groupgood);
+                            bot.sendMessage(ChatId, messageText.groupgood);  
                         }
-                    });
+                     });
                  return 0;    
                 }) 
                           
