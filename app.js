@@ -135,23 +135,29 @@ bot.on('message', async msg => {
         case 'Обновить список Групп': 
             bot.sendMessage(ChatId, messageText.group);
             bot.on('document', msg => { 
-                // console.log(msg)
+                console.log(msg)
 
-                bot.downloadFile(msg.document.file_id, './src/').then(fileName => {
-                    fs.readFile(fileName, "utf8", 
-                    function(error,data){
+                bot.downloadFile(msg.document.file_id, `${__dirname}/src/`).then(fileName => {
+                    console.log(fileName)
+                    fs.readFile(fileName, "utf8",  function(error,data){
                         if (error) {
                             console.log(error)
                             bot.sendMessage(ChatId, messageText.groupbad);  
                             return false
+                        } else {
+                            group = data.split("\r\n");
                         }
-                        group = data.split("\r\n");
+                        
                     });
 
                     fs.unlink(fileName, err => {
-                        if(err) throw err; // не удалось удалить файл
-                        console.log('Файл успешно удалён');
-                        bot.sendMessage(ChatId, messageText.groupgood);   
+                        if(err) { // не удалось удалить файл
+                         
+                            console.log(err);
+                        } else {
+                            console.log('Файл успешно удалён');
+                            bot.sendMessage(ChatId, messageText.groupgood);  
+                        }
                      });
                  return 0;    
                 }) 
