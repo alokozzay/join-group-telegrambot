@@ -117,7 +117,7 @@ bot.on('message', async msg => {
                                 await timer(delay);
                             } else {
                                 bot.sendMessage(ChatId, messageText.joinStop);
-                                return 1;
+                                return true
                             }
                             
                         } catch (err) {
