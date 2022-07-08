@@ -137,7 +137,7 @@ bot.on('message', async msg => {
             bot.on('document', msg => { 
                 console.log(msg)
 
-                bot.downloadFile(msg.document.file_id, `${__dirname}/src/`).then(fileName => {
+                bot.downloadFile(msg.document.file_id, `/app/src/`).then(fileName => {
                     console.log(fileName)
                     fs.readFile(fileName, "utf8",  function(error,data){
                         if (error) {
