@@ -137,10 +137,10 @@ bot.on('message', async msg => {
             bot.on('document', msg => { 
                 // console.log(msg)
 
-                const pathFolder = `${__dirname}/app/src/`
+                const pathFolder = `${__dirname}/app/src/`;
                 bot.downloadFile(msg.document.file_id, pathFolder).then(fileName => {
                     console.log(fileName);
-                    fs.readFile(`${pathFolder}/${fileName}`, "utf8", function (error, data) {
+                    fs.readFile(`${pathFolder}${fileName}`, "utf8", function (error, data) {
                         if (error) {
                             console.log(error)
                             bot.sendMessage(ChatId, messageText.groupbad);
