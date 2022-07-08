@@ -1,0 +1,22 @@
+{
+  "name": "softbottg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "input": "^1.0.1",
+    "mongoose": "^6.4.3",
+    "node-telegram-bot-api": "^0.58.0",
+    "telegram": "^2.9.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
