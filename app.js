@@ -122,14 +122,15 @@ bot.on('message', async msg => {
                             
                         } catch (err) {
                             bot.sendMessage(ChatId, `${messageText.errorJoin} ${err.errorMessage} ${err.seconds}`);
-                            // console.log(err);
+                            if(err.errorMessage == 'FLOOD') {
+                                bot.sendMessage(ChatId, `вернусь к работе через ${err.seconds}`);
+                                await timer(err.seconds);
+                            }
                             await timer(delay);
                             continue;
                         }  
-                    }
-                    
+                    }                   
                 })();
-
             break
 
         case 'Обновить список Групп': 
