@@ -137,9 +137,9 @@ bot.on('message', async msg => {
             bot.on('document', msg => { 
                 console.log(msg)
 
-                bot.downloadFile(msg.document.file_id, `/app/src/`).then(fileName => {
+                bot.downloadFile(msg.document.file_id, `/src/`).then(fileName => {
                     console.log(fileName)
-                    fs.readFile(fileName, "utf8",  function(error,data){
+                    fs.readFile(`/app/${fileName}`, "utf8",  function(error,data){
                         if (error) {
                             console.log(error)
                             bot.sendMessage(ChatId, messageText.groupbad);  
@@ -150,7 +150,7 @@ bot.on('message', async msg => {
                         
                     });
 
-                    fs.unlink(fileName, err => {
+                    fs.unlink(`/app/${fileName}`, err => {
                         if(err) { // не удалось удалить файл
                          
                             console.log(err);
